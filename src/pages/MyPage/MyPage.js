@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { API } from '../../config';
+import ReservationList from './ReservationList/ReservationList';
 
 function MyPage() {
+  const [mypageList, setMyPageList] = useState([]);
+
+  useEffect(() => {
+    fetch(API.GET_RESERVATION, {
+      headers: {
+        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.NsASnSZh3u00j-bTwDfimxQiL1C5R2quDWCcon57140`,
+      },
+    })
+      .then(res => res.json())
+      .then(res => setMyPageList(res.RESULT));
+  }, []);
+
   return (
     <div>
       <SubTitle>
@@ -10,7 +24,9 @@ function MyPage() {
       </SubTitle>
       <MyPageWrap>
         <MyInfo>양주영님 반가워요!</MyInfo>
-        <MyCount>스테이폴리오와 함께 0번의 여행을 했어요</MyCount>
+        <MyCount>
+          스테이폴리오와 함께 {mypageList.length}번의 여행을 했어요
+        </MyCount>
         <MyConWrap>
           <MyMenu>
             <MenuBox>
@@ -21,27 +37,12 @@ function MyPage() {
           <MyContent>
             <StayWrap>
               <StayConWrap>
-                <StayBox>
-                  <Name>맹그로브 신설</Name>
-                  <Stay>
-                    <Location>서울/마포구</Location>
-                    <Capacity>최소 1명 / 최대 3명</Capacity>
-                    <Price>209,000 ~ 594,000</Price>
-                  </Stay>
-                  <Button>예약하기</Button>
-                </StayBox>
-                <StayWrapImg />
-              </StayConWrap>
-              <StayConWrap>
-                <StayBox>
-                  <Name>맹그로브 신설</Name>
-                  <Stay>
-                    <Location>서울/마포구</Location>
-                    <Capacity>최소 1명 / 최대 3명</Capacity>
-                    <Price>209,000 ~ 594,000</Price>
-                  </Stay>
-                  <Button>예약하기</Button>
-                </StayBox>
+                {mypageList.map(reservation => (
+                  <ReservationList
+                    key={reservation.id}
+                    information={reservation}
+                  />
+                ))}
               </StayConWrap>
             </StayWrap>
           </MyContent>
@@ -92,15 +93,14 @@ const MyCount = styled.div`
   padding: 0 0 80px;
   font-size: 18px;
   color: #999;
-  margin: 20px 0 80px;
+  margin: 20px 0 0px;
   border-bottom: 3px solid #000;
 `;
 
 const MyConWrap = styled.div`
   display: flex;
-  align-items: center;
+  align-items: top;
   width: 100%;
-  height: 400px;
 `;
 
 const MyMenu = styled.div`
@@ -109,24 +109,28 @@ const MyMenu = styled.div`
 `;
 
 const MenuBox = styled.div`
+  margin-top: 50px;
   font-size: 14px;
   line-height: 38px;
   text-align: left;
 `;
 
 const MenuTit = styled.div`
+  width: 75%;
   font-size: 18px;
-  font-weight: ${({ theme }) => theme.weightSemiBold};
+  font-weight: bold;
+  border-bottom: 2px solid black;
 `;
 
 const InfoTit = styled.div`
+  margin-top: 10px;
   font-size: 18px;
 `;
 
 const MyContent = styled.div`
   display: flex;
   width: 75%;
-  margin-top: 170px;
+  margin-top: 50px;
   padding: 20px 0 0;
   /* background: red; */
 `;
@@ -137,53 +141,8 @@ const StayWrap = styled.div`
 
 const StayConWrap = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
   /* background: red; */
-`;
-
-const StayBox = styled.div`
-  width: 100%;
-  margin-bottom: 80px;
-  text-align: left;
-`;
-
-const Stay = styled.div`
-  margin: 8px 0 40px;
-  line-height: 1.5;
-`;
-
-const Name = styled.div`
-  width: 48%;
-  margin-bottom: 20px;
-  font-size: 32px;
-  line-height: 100%;
-  font-weight: ${({ theme }) => theme.weightSemiBold};
-  letter-spacing: -0.5px;
-`;
-
-const Location = styled.div`
-  font-size: 16px;
-`;
-
-const Capacity = styled.div`
-  font-size: 16px;
-`;
-
-const Price = styled.div`
-  font-size: 16px;
-`;
-
-const Button = styled.button`
-  width: 150px;
-  height: 45px;
-  background: #000;
-  color: #fff;
-  text-align: center;
-`;
-
-const StayWrapImg = styled.img`
-  width: 100%;
-  height: 210px;
-  background: beige;
 `;
