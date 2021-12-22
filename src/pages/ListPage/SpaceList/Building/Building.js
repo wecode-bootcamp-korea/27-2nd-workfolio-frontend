@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function Building({ space }) {
@@ -11,10 +12,17 @@ function Building({ space }) {
     min_price,
     max_price,
     image,
+    id,
   } = space;
+
+  const navigate = useNavigate();
+
+  const moveToDetail = () => {
+    navigate(`/detail/${id}`);
+  };
   return (
     <Container>
-      <Head1>{name}</Head1>
+      <Head1 onClick={moveToDetail}>{name}</Head1>
       <FlexBox>
         <div>
           <Head3>
@@ -27,10 +35,10 @@ function Building({ space }) {
             ￦{Number(min_price).toLocaleString()} ~ ￦
             {Number(max_price).toLocaleString()}
           </Head3>
-          <Button>예약하기</Button>
+          <Button onClick={moveToDetail}>예약하기</Button>
         </div>
         <div>
-          <Img src={image} alt="space" />
+          <Img onClick={moveToDetail} src={image} alt="space" />
         </div>
       </FlexBox>
     </Container>
@@ -44,6 +52,7 @@ const Container = styled.div`
 const Head1 = styled.h1`
   font-size: 32px;
   font-weight: 500;
+  cursor: pointer;
 `;
 
 const Head3 = styled.h3`
@@ -69,5 +78,7 @@ const Img = styled.img`
   width: 407px;
   height: 230px;
   margin: 30px 0 80px 50px;
+  cursor: pointer;
 `;
+
 export default Building;
