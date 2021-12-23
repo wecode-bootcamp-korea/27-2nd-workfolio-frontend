@@ -5,11 +5,12 @@ import ReservationList from './ReservationList/ReservationList';
 
 function MyPage() {
   const [mypageList, setMyPageList] = useState([]);
+  const TOKEN = sessionStorage.getItem('token');
 
   useEffect(() => {
     fetch(API.GET_RESERVATION, {
       headers: {
-        Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.NsASnSZh3u00j-bTwDfimxQiL1C5R2quDWCcon57140`,
+        Authorization: `Bearer ${TOKEN}`,
       },
     })
       .then(res => res.json())

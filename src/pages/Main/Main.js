@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import MainSlider from 'react-slick';
 
@@ -12,7 +12,6 @@ function Main() {
         setGetData(response.RESULT);
       });
   }, []);
-
   const { images } = getData;
 
   const settings = {
