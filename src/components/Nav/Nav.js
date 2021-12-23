@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import NavDestinationModal from './NavDestinationModal/NavDestinationModal';
+import NavCalendarModal from './NavCalendarModal/NavCalendarModal';
 
 function Nav() {
+  const [handleDestinationModal, setHandleDestinationModal] = useState(false);
+  const [handleCalendarModal, setHandleCalendarModal] = useState(false);
   return (
     <NavBar>
       <NavBarContainer>
@@ -12,30 +16,51 @@ function Nav() {
           </Link>
         </NavLogo>
 
-        <Menu>
-          <MenuContainer>
-            <Button>
-              <MenuButtonImg
-                src="/images/location.svg"
-                alt="어디로 떠날까요?"
-              />
-              <DestinationText>어디로 떠날까요?</DestinationText>
-            </Button>
-            <Button>
-              <MenuButtonImg src="/images/calendar.svg" alt="언제 떠날까요?" />
-              <CalendarText>언제 떠날까요?</CalendarText>
-            </Button>
-          </MenuContainer>
+        <MenuContainer>
+          <MenuWrapper>
+            <ModalWrapper>
+              {handleDestinationModal && (
+                <NavDestinationModal closeModal={setHandleDestinationModal} />
+              )}
+              <DestinationButton
+                onClick={() => {
+                  setHandleDestinationModal(true);
+                }}
+              >
+                <MenuButtonImg
+                  src="/images/location.svg"
+                  alt="어디서 시작할까요?"
+                />
 
-          <DetailMenu>
-            <Link to="/list-page">
-              <Text> FIND OFFICE </Text>
-            </Link>
-            <Link to="/list-page">
-              <Text> PRE-ORDER</Text>
-            </Link>
-          </DetailMenu>
+                <DestinationText>어디서 시작할까요?</DestinationText>
+              </DestinationButton>
+              {handleCalendarModal && (
+                <NavCalendarModal closeModal={setHandleCalendarModal} />
+              )}
+              <CalendarButton
+                onClick={() => {
+                  setHandleCalendarModal(true);
+                }}
+              >
+                <MenuButtonImg
+                  src="/images/calendar.svg"
+                  alt="언제 시작할까요?"
+                />
+                <CalendarText>언제 시작할까요?</CalendarText>
+              </CalendarButton>
+            </ModalWrapper>
 
+            <DetailPageWrapper>
+              <DetailMenu>
+                <Link to="/list-page">
+                  <Text> FIND OFFICE </Text>
+                </Link>
+                <Link to="/list-page">
+                  <Text> PRE-ORDER</Text>
+                </Link>
+              </DetailMenu>
+            </DetailPageWrapper>
+          </MenuWrapper>
           <LogInContainer>
             <Link to="/my-page">
               <MyPage src="/images/person.svg" alt="마이 페이지" />
@@ -44,7 +69,7 @@ function Nav() {
               <LoginText>LOGIN</LoginText>
             </Link>
           </LogInContainer>
-        </Menu>
+        </MenuContainer>
       </NavBarContainer>
     </NavBar>
   );
@@ -55,58 +80,70 @@ const borderBottom = props => css`
 `;
 
 const NavBar = styled.div`
-  padding: 0 60px;
-  ${borderBottom}
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 80% ${borderBottom};
   background-color: ${({ theme }) => theme.colorWhite};
 `;
 
 const NavBarContainer = styled.div`
-  ${({ theme }) => theme.flex('row', 'center', 'space-between')};
+  ${({ theme }) => theme.flex('row', 'center', 'center')};
   height: 75px;
+  padding: 5px;
 `;
 
 const NavLogo = styled.div`
   cursor: pointer;
+  padding: 0 350px 0 50px;
 `;
 
 const LogoImg = styled.img`
-  width: auto;
+  width: 200px;
   height: 200px;
-  padding-top: 5px;
-`;
-
-const Menu = styled.div`
-  ${({ theme }) => theme.flex('row', 'center', 'space-between')};
 `;
 
 const MenuContainer = styled.div`
+  ${({ theme }) => theme.flex('row', 'center', 'cneter')};
+`;
+
+const MenuWrapper = styled.div`
+  ${({ theme }) => theme.flex('row', 'center', 'space-between')};
+`;
+
+const ModalWrapper = styled.div`
+  ${({ theme }) => theme.flex('row', 'center', 'center')};
+  padding-right: 50px;
+`;
+
+const DetailPageWrapper = styled.div`
   display: flex;
-  margin-right: 200px;
 `;
 
 const MenuButtonImg = styled.img`
   display: block;
   width: 25px;
   height: 25px;
-  padding-right: 5px;
-  margin-left: 30px;
   cursor: pointer;
+  margin-left: 40px;
 `;
 
 const DestinationText = styled.p`
+  width: 120px;
+  height: auto;
   padding: 5px;
+  font-size: 15px;
   font-weight: ${({ theme }) => theme.weightSemiBold};
   color: ${({ theme }) => theme.colorBlack};
-
-  &::after {
-    content: '|';
-    margin-left: 25px;
-    color: ${({ theme }) => theme.colorGray};
-  }
 `;
 
 const CalendarText = styled.p`
+  width: 120px;
+  height: auto;
+  margin-right: 100px;
   padding: 5px;
+  font-size: 15px;
   font-weight: ${({ theme }) => theme.weightSemiBold};
   color: ${({ theme }) => theme.colorBlack};
 `;
@@ -115,13 +152,20 @@ const DetailMenu = styled.div`
   display: flex;
 `;
 
-const Button = styled.button`
+const DestinationButton = styled.button`
+  display: flex;
+  cursor: pointer;
+`;
+
+const CalendarButton = styled.button`
   display: flex;
   cursor: pointer;
 `;
 
 const Text = styled.p`
-  padding-right: 30px;
+  width: 100px;
+  height: auto;
+  margin-right: 20px;
   font-weight: ${({ theme }) => theme.weightBold};
   color: ${({ theme }) => theme.colorBlack};
 `;
@@ -132,22 +176,28 @@ const LogInContainer = styled.div`
 
   &::before {
     content: '|';
-    margin-left: 5px;
+    margin-right: 30px;
+    clear: both;
+    overflow: hidden;
     color: ${({ theme }) => theme.colorGray};
   }
 `;
 
 const MyPage = styled.img`
   display: block;
-  width: 20px;
-  height: 20px;
-  margin: 0 15px 0 35px;
+  width: 15px;
+  height: 15px;
+  margin-right: 15px;
 `;
 
 const LoginText = styled.p`
-  padding-top: 3px;
+  display: flex;
+  margin-right: 50px;
+  width: 100px;
+  height: auto;
   font-weight: ${({ theme }) => theme.weightBold};
   color: ${({ theme }) => theme.colorBlack};
+  margin-left: 5px;
 `;
 
 export default Nav;

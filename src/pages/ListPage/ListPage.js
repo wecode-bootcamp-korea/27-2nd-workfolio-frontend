@@ -211,7 +211,7 @@ function ListPage() {
 const Div = styled.div`
   width: 1290px;
   height: 136px;
-  margin: 0 55px;
+  margin: 0 auto;
   padding: 70px 20px 0 20px;
 `;
 
