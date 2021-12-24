@@ -1,7 +1,5 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=TEAM_WORKS&fontSize=60&marginLeft=50)
 
-<br/>
-
 ---
 
 # 프로젝트 개요
@@ -20,10 +18,9 @@
 
 ## <b>목표</b>
 
-- 리액트 및 스타일링 컴포넌트 활용
+- 스타일링 컴포넌트 활용
 - Date Picker, Slick 라이브러리 사용
 - 모달창 구현
-- Filter, Sort 활용하기
 - 초기 세팅부터 전부 실제 사용할 수 있는 서비스 수준으로 기획 및 배포까지 구현
 
 <br/>
