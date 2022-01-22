@@ -3,17 +3,18 @@ import styled from 'styled-components';
 import MainSlider from 'react-slick';
 
 function Main() {
-  const [getData, setGetData] = useState({});
+  const [getData, setGetData] = useState([]);
 
   useEffect(() => {
-    fetch('http://workfolio.kro.kr/buildings/1')
+    // fetch('http://workfolio.kro.kr/buildings/1')
+    // fetch('./data/space.json')
+    fetch('./data/images.json')
       .then(response => response.json())
       .then(response => {
-        setGetData(response.RESULT);
+        const data = response.RESULT;
+        setGetData([...data]);
       });
   }, []);
-
-  const { images } = getData;
 
   const settings = {
     dots: true,
@@ -27,11 +28,11 @@ function Main() {
 
   return (
     <BackGround>
-      <MainSlider {...settings}>
-        {images?.map((image, index) => {
+      <MainSlider {...settings} style={{ zIndex: -1 }}>
+        {getData.map(({ id, url }) => {
           return (
-            <div key={index}>
-              <MainImg src={image.url} />
+            <div key={id}>
+              <MainImg src={url} />
             </div>
           );
         })}
@@ -41,12 +42,15 @@ function Main() {
 }
 
 const BackGround = styled.div`
-  background-color: ${({ theme }) => theme.colorWhite};
+  background-color: transparent;
+  overflow-x: hidden;
 `;
 
 const MainImg = styled.img`
-  width: 1702px;
-  height: 850px;
+  width: 100vw;
+  max-width: 1500px;
+  height: 800px;
+  margin: 0 auto;
 `;
 
 export default Main;

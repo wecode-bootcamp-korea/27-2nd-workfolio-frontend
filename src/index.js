@@ -4,8 +4,8 @@ import Router from './Router';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
-const { Kakao } = window;
-Kakao.init(process.env.REACT_APP_JAVASCRIPT_KEY);
+// const { Kakao } = window;
+// Kakao.init(process.env.REACT_APP_JAVASCRIPT_KEY);
 
 ReactDOM.render(
   <>

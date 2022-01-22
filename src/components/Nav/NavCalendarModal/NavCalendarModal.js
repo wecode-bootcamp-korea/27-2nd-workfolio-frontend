@@ -68,7 +68,7 @@ const ModalContainer = styled.div`
   width: 1125px;
   height: 600px;
   padding: 20px 20px 30px 20px;
-  z-index: 99;
+  z-index: 9;
   background: #fff;
 `;
 

@@ -84,7 +84,7 @@ const NavBar = styled.div`
   top: 0;
   right: 0;
   left: 0;
-  width: 80% ${borderBottom};
+  width: 70% ${borderBottom};
   background-color: ${({ theme }) => theme.colorWhite};
 `;
 
@@ -96,7 +96,7 @@ const NavBarContainer = styled.div`
 
 const NavLogo = styled.div`
   cursor: pointer;
-  padding: 0 350px 0 50px;
+  padding-left: 50px;
 `;
 
 const LogoImg = styled.img`
@@ -150,6 +150,7 @@ const CalendarText = styled.p`
 
 const DetailMenu = styled.div`
   display: flex;
+  margin-left: 50px;
 `;
 
 const DestinationButton = styled.button`

@@ -138,7 +138,7 @@ const ModalContainer = styled.div`
   width: 1125px;
   height: 700px;
   padding: 20px 20px 30px 20px;
-  z-index: 99;
+  z-index: 9;
   background-color: #fff;
 `;
 
@@ -171,18 +171,14 @@ const MainContainer = styled.div`
 `;
 
 const SearchingBarContainer = styled.div`
-  position: absolute;
   ${({ theme }) => theme.flex('row', 'center', 'center')};
   min-width: 500px;
   border-radius: 50px;
-  left: 30%;
-  top: 5%;
   background-color: ${({ theme }) => theme.colorLightGray};
   color: ${({ theme }) => theme.colorGray};
 
   & form {
     ${({ theme }) => theme.flex('row', 'center', 'start')};
-    width: 100%;
     padding: 10px 30px 10px 10px;
 
     & img {
@@ -193,7 +189,6 @@ const SearchingBarContainer = styled.div`
     }
 
     & input {
-      width: 100%;
       color: black;
 
       ::placeholder {
@@ -203,91 +198,31 @@ const SearchingBarContainer = styled.div`
   }
 `;
 
-const LocationDataContainer = styled.div`
-  ${({ theme }) => theme.flex('row', 'center', 'center')};
-`;
+const LocationDataContainer = styled.div``;
 
-const LocationDataWrapper = styled.div`
-  ${({ theme }) => theme.flex('row', 'center', 'space-between')};
-`;
+const LocationDataWrapper = styled.div``;
 
-const LocationTitle = styled.div`
-  position: absolute;
-  top: 40%;
-  width: 50px;
-  font-size: 19px;
-  font-weight: 700;
-  ${({ theme }) => theme.colorLightGray};
-`;
+const LocationTitle = styled.div``;
 const LocationDomesticData = styled.div`
-  width: 500px;
-  height: 180px;
-  margin-right: 80px;
-
   & p {
-    display: inline-block;
-    width: 300px;
-    text-align: center;
-    line-height: 32px;
-    padding: 12px 20px 0 0px;
-    margin: 20px 150px 0 20px;
     cursor: pointer;
   }
   & .buttonChecked {
-    display: block;
-    background-color: #000;
-    font-size: 17px;
-    color: #fff;
-    text-align: center;
-    line-height: 64px;
-    border-radius: 100px;
-    box-shadow: 13px 15px 30px 0 rgb(0 0 0 / 40%);
     cursor: pointer;
   }
 `;
 
 const LocationAbroadData = styled.div`
-  width: 300px;
-  height: 180px;
-
   & p {
-    display: inline-block;
-    width: 300px;
-    text-align: center;
-    line-height: 32px;
-    padding: 12px 20px 0 0px;
-    margin: 20px 150px 0 20px;
     cursor: pointer;
   }
 
   & .buttonChecked {
-    display: block;
-  background-color: #000;
-  font-size: 17px;
-  color: #fff;
-  text-align: center;
-  line-height: 64px;
-  border-radius: 100px;
-  box-shadow: 13px 15px 30px 0 rgb(0 0 0 / 40%);
-  cursor: pointer;
+  }
 `;
 
-const ButtonContainer = styled.div`
-  ${({ theme }) => theme.flex('row', 'center', 'center')};
-`;
+const ButtonContainer = styled.div``;
 
-const SearchingButton = styled.span`
-  display: block;
-  background-color: #000;
-  font-size: 17px;
-  color: #fff;
-  text-align: center;
-  line-height: 64px;
-  border-radius: 100px;
-  box-shadow: 13px 15px 30px 0 rgb(0 0 0 / 40%);
-  padding: 0 40px 0 40px;
-  margin: 40px 20px;
-  cursor: pointer;
-`;
+const SearchingButton = styled.span``;
 
 export default DestinationModal;
