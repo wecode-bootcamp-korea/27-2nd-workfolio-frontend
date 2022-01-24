@@ -81,7 +81,7 @@
 # Members
 
 [프론트엔드]  
-[강인웅 Github](http:s//github.com/wong0220)  
+[강인웅 Github](https://github.com/wong0220/27-2nd-workfolio-frontend)  
 [김유량 Github](https://github.com/YuryangKim)  
 [양주영 Github](https://github.com/yangddu)
 
