@@ -18,7 +18,7 @@ function DetailRoomCard({ offices }) {
     infinite: true,
     autoplay: false,
     // centerPadding: '60px',
-    slidesToShow: 2.7,
+    slidesToShow: 2.4,
     speed: 500,
     nextArrow: <NextButton />,
     prevArrow: <PrevButton />,

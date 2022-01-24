@@ -66,7 +66,11 @@ function Nav() {
               <MyPage src="/images/person.svg" alt="마이 페이지" />
             </Link>
             <Link to="/login">
-              <LoginText>LOGIN</LoginText>
+              {TOKEN === null ? (
+                <LoginText>LOGIN</LoginText>
+              ) : (
+                <LoginText>LOGOUT</LoginText>
+              )}
             </Link>
           </LogInContainer>
         </MenuContainer>

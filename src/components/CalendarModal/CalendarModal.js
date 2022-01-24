@@ -34,7 +34,7 @@ function CalendarModal({
     })
       .then(response => response.json())
       .then(result => {
-        if (result.MESSAGE === 'SUCCESS') {
+        if (result.Message === 'CREATED') {
           alert('예약이 완료되었습니다.');
           window.location.reload();
         }

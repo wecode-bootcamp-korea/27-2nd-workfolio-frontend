@@ -5,14 +5,18 @@ import Slider from 'react-slick';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import { useParams } from 'react-router-dom';
+import { API } from '../../config';
 
 function Detail() {
+  const { id } = useParams();
+
   const [detailContents, setDetailContents] = useState([]);
   useEffect(() => {
-    fetch('http://workfolio.kro.kr/buildings/1')
+    fetch(`${API.GET_BUILDINGS}/${id}`)
       .then(response => response.json())
       .then(data => setDetailContents(data.RESULT));
-  }, []);
+  }, [id]);
 
   const {
     name,
