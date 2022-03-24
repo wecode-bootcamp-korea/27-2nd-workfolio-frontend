@@ -32,7 +32,7 @@
 
 # 구현 영상
 
-- [TEAM >WORKFOLIO 구현 영상](https://youtu.be/tzR7IHBsa3U)
+- [TEAM >WORKFOLIO 구현 영상](https://www.youtube.com/watch?v=JAhBE9hq6cA)
 
 <br/>
 
