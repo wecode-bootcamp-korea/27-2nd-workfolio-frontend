@@ -171,7 +171,7 @@ function ListPage() {
         for (let i = 1; i <= number; i++) {
           tempArr.push(i);
         }
-        setPages([...tempArr]);
+        setPages(tempArr);
       });
   }, [LOCATION_SEARCH]);
 
